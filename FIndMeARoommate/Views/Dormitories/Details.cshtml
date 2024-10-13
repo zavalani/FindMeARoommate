@@ -28,6 +28,23 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.MaxCapacity)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentsList)
+        </dt>
+        @{
+            var selectListItems = new List<SelectListItem>();
+
+            if (Model.StudentsList != null)
+            {
+                foreach (var i in Model.StudentsList)
+                {
+                    selectListItems.Add(new SelectListItem { Value = i.Id.ToString(), Text = i.Name }); // Assuming i.Name is the property to display
+                }
+            }
+        }
+        <dd class="col-sm-10">
+            @Html.DropDownListFor(model => model.StudentsList, selectListItems)
+        </dd>
     </dl>
 </div>
 <div>

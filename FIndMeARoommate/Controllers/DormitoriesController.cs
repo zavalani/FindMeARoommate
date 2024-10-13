@@ -37,6 +37,8 @@ namespace FIndMeARoommate.Controllers
 
             var dormitories = await _context.Dormitories
                 .FirstOrDefaultAsync(m => m.Id == id);
+            dormitories.StudentsList = _context.Students.Where(x => x.DormitoriesId == dormitories.Id).ToList();
+
             if (dormitories == null)
             {
                 return NotFound();
@@ -59,6 +61,7 @@ namespace FIndMeARoommate.Controllers
         public async Task<IActionResult> Create([Bind("Id,Code,Name,MaxCapacity")] Dormitories dormitories)
         {
             dormitories.StudentsList = _context.Students.Where(x=>x.DormitoriesId == dormitories.Id).ToList();
+            
             if (ModelState.IsValid)
             {
                 _context.Add(dormitories);
