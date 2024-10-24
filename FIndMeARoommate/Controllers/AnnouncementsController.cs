@@ -155,7 +155,7 @@ namespace FIndMeARoommate.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AnnouncementsExists(int id)
+        public bool AnnouncementsExists(int id)
         {
           return (_context.Announcements?.Any(e => e.Id == id)).GetValueOrDefault();
         }
